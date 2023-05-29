@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://byhn2pxycnd7p"]
+
+[ext_resource type="Script" path="res://bomb.gd" id="1_o7jh0"]
+[ext_resource type="Texture2D" uid="uid://bkwb5mdlpdsds" path="res://sprite/food/bomb.tga" id="2_d8hun"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xcchf"]
+size = Vector3(0.452881, 0.002, 0.393825)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mihkb"]
+
+[node name="bomb" type="CharacterBody3D" groups=["bomb"]]
+process_priority = 1
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_o7jh0")
+
+[node name="SpriteTail" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+texture_filter = 4
+texture = ExtResource("2_d8hun")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
+size = Vector3(1, 0.002, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xcchf")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+inertia = Vector3(1, 1, 1)
+physics_material_override = SubResource("PhysicsMaterial_mihkb")
+max_contacts_reported = 3
+can_sleep = false
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_xcchf")
+disabled = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+radius = 0.01

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://8h7p1e8s1qnp"]
+
+[ext_resource type="Script" path="res://body_and_tail.gd" id="1_6capj"]
+[ext_resource type="Texture2D" uid="uid://beq0rsmuw77so" path="res://sprite/part_snake/body.tga" id="2_yd1xj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xcchf"]
+size = Vector3(0.381083, 0.002, 0.393825)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mihkb"]
+
+[node name="bodySnake" type="CharacterBody3D"]
+process_priority = 1
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_mask = 6
+script = ExtResource("1_6capj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
+size = Vector3(1, 0.002, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xcchf")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+inertia = Vector3(1, 1, 1)
+physics_material_override = SubResource("PhysicsMaterial_mihkb")
+max_contacts_reported = 3
+can_sleep = false
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_xcchf")
+disabled = true
+
+[node name="SpriteBody" type="Sprite3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0.5, 2.18557e-08, 0, -2.18557e-08, 0.5, 0.5, 2.18557e-08, 9.55343e-16, 0, 0, 0)
+texture_filter = 4
+texture = ExtResource("2_yd1xj")

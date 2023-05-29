@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://x11fuhgti17i"]
+
+[ext_resource type="PackedScene" uid="uid://bra81ld0te6ck" path="res://character.tscn" id="1_brbc8"]
+[ext_resource type="Script" path="res://Scene_demo.gd" id="1_f4voa"]
+[ext_resource type="PackedScene" uid="uid://mp0ui4p5pub2" path="res://food.tscn" id="2_b5fon"]
+[ext_resource type="PackedScene" uid="uid://8h7p1e8s1qnp" path="res://body.tscn" id="3_qg0kr"]
+[ext_resource type="PackedScene" uid="uid://byhn2pxycnd7p" path="res://bomb.tscn" id="3_rgo6y"]
+[ext_resource type="PackedScene" uid="uid://bqwjlnkfpbxhf" path="res://tail.tscn" id="4_7pfgl"]
+[ext_resource type="PackedScene" uid="uid://dcug8a1ruw4p4" path="res://interface.tscn" id="4_foc6g"]
+[ext_resource type="PackedScene" uid="uid://c6x1qvt6ialk0" path="res://menu.tscn" id="5_mkgm2"]
+[ext_resource type="Texture2D" uid="uid://8hx6xt711lsn" path="res://sprite/Sprite-m00n.tga" id="8_jd3dd"]
+[ext_resource type="Texture2D" uid="uid://dvqg77ayqwkjv" path="res://sprite/sky.tga" id="10_87035"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76juf"]
+albedo_texture = ExtResource("8_jd3dd")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hfsqr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j7yug"]
+radius = 5.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fh6em"]
+radius = 30.0
+
+[node name="Node3D" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_f4voa")
+food_scene = ExtResource("2_b5fon")
+bomb_scene = ExtResource("3_rgo6y")
+body_scene = ExtResource("3_qg0kr")
+tail_scene = ExtResource("4_7pfgl")
+menu_scene = ExtResource("5_mkgm2")
+
+[node name="Control" parent="." instance=ExtResource("4_foc6g")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0.00143018, 0.00549768, -0.00141152, 9.99994, -0.0339105, -0.0055025, 0.0339097, 9.99994, -1.04308e-06, -1.90735e-06, 9.53674e-07)
+material_override = SubResource("StandardMaterial3D_76juf")
+mesh = SubResource("SphereMesh_hfsqr")
+
+[node name="Sprite3D" type="Sprite3D" parent="MeshInstance3D"]
+transform = Transform3D(1, -0.0006439, -0.000729366, 0.000643968, 1, 9.3031e-05, 0.000729306, -9.35001e-05, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04308e-06, -1.90735e-06, 9.53674e-07)
+shape = SubResource("SphereShape3D_j7yug")
+
+[node name="Area3D" type="Area3D" parent="."]
+priority = 1.0
+gravity_space_override = 3
+gravity_point = true
+gravity_point_unit_distance = 30.0
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 48.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_fh6em")
+
+[node name="headSnake" parent="." instance=ExtResource("1_brbc8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="headSnake"]
+transform = Transform3D(0.0005497, 1, 0.000143104, -0.00339109, -0.000141239, 0.999994, 0.999994, -0.000550182, 0.00339101, 0, 3.7, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="headSnake/Camera3D"]
+transform = Transform3D(11, 8.19564e-10, -2.09902e-20, -8.19564e-10, 11, -2.81725e-10, 0, 2.81725e-10, 11, 0, -2.32831e-10, -10)
+texture_filter = 4
+texture = ExtResource("10_87035")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="headSnake/Camera3D"]
+transform = Transform3D(0.0005497, -0.999804, -0.0197959, 1, 0.000552425, -0.000132194, 0.000143104, -0.0197958, 0.999804, -0.0101276, -0.000421816, 2.98653)
+
+[node name="bodySnake" parent="." instance=ExtResource("3_qg0kr")]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

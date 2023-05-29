@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcug8a1ruw4p4"]
+
+[ext_resource type="Script" path="res://Label.gd" id="1_vn1w7"]
+
+[sub_resource type="FontFile" id="FontFile_yfhu0"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/31/0 = Vector2(0, 0)
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/31/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/31/0/kerning_overrides/31/0 = Vector2(0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_rarqb"]
+base_font = SubResource("FontFile_yfhu0")
+
+[sub_resource type="Theme" id="Theme_yyt8p"]
+default_font = SubResource("FontVariation_rarqb")
+default_font_size = 31
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yyt8p")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Score: 0"
+script = ExtResource("1_vn1w7")

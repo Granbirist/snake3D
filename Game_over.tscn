@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd4guv3cexvd6"]
+
+[ext_resource type="Script" path="res://endgame.gd" id="1_c5jmq"]
+[ext_resource type="Texture2D" uid="uid://bug0ke2k153dd" path="res://sprite/GO.tga" id="2_63hil"]
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 5
+position = Vector2(16, 18)
+script = ExtResource("1_c5jmq")
+
+[node name="GameOver" type="Sprite2D" parent="."]
+texture_filter = 5
+position = Vector2(502.5, 345)
+scale = Vector2(16.2969, 16.3111)
+texture = ExtResource("2_63hil")

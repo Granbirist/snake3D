@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6x1qvt6ialk0"]
+
+[ext_resource type="Texture2D" uid="uid://pfu784jcuhy0" path="res://sprite/menu.tga" id="1_e08vh"]
+[ext_resource type="Script" path="res://menu.gd" id="1_q0k7x"]
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 5
+position = Vector2(16, 18)
+script = ExtResource("1_q0k7x")
+
+[node name="Menu" type="Sprite2D" parent="."]
+position = Vector2(496, 342)
+texture = ExtResource("1_e08vh")
