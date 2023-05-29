@@ -36,7 +36,7 @@ func _process(delta):
 	
 	position_history.push_front($headSnake.position)
 	rotation_history.push_front($headSnake.rotation)
-	if !has_node("food") and body_and_tail_array.size() != 32:
+	if !has_node("food") and body_and_tail_array.size() != 36:
 		var food = food_scene.instantiate(1)
 		food.position = get_random_pos_in_sphere(5)
 		add_child(food)
@@ -83,7 +83,7 @@ func _pop_body():
 		queue_free()
 		
 func _win():
-	if body_and_tail_array.size() == 32:
+	if body_and_tail_array.size() == 36:
 		get_tree().change_scene_to_file("res://Game_win.tscn")
 		queue_free()
 

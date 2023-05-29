@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://chetibpp07l8y" path="res://sprite/food/cheese.tga" id="2_m1m2k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xcchf"]
-size = Vector3(0.452881, 0.002, 0.393825)
+size = Vector3(0.5, 0.002, 0.5)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mihkb"]
 
@@ -17,7 +17,7 @@ motion_mode = 1
 script = ExtResource("1_sdltn")
 
 [node name="SpriteTail" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+transform = Transform3D(-1.00536e-07, 2.3, 1.00536e-07, 0, -1.00536e-07, 2.3, 2.3, 1.00536e-07, 4.39458e-15, 0, 0, 0)
 texture_filter = 4
 texture = ExtResource("2_m1m2k")
 
